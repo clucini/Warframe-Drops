@@ -45,18 +45,22 @@ ui <- fluidPage(
          ),
          pickerInput(
            'secondSortSelect',
-           'Sort by',
+           'Sort by Second',
            choices = colnames(m_data),
            selected = "Planet"
-         ),
-         switchInput(inputId = "id", value = TRUE),
-         switchInput(inputId = "id", value = TRUE)
-         
+         )
       ),
       
       # Show a plot of the generated distribution
       mainPanel(
-         tableOutput("tab")
+        fluidRow(
+          column( width = 4,
+            tableOutput("tab")
+          )
+          #column( width = 4,
+            #plotOutput("distPlot")
+          #)
+        )
       )
    )
 )
@@ -64,9 +68,14 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   output$tab <- renderTable({
-    m_data[(m_data$Item %in% r_data[r_data$Item == input$itemSelect,]$LongName & m_data$Mission.Type %in% input$missionTypeSelect),] %>% 
-      arrange_at(input$secondSortSelect) %>%
-      arrange_at(input$sortSelect)
+    m <- m_data[(m_data$Item %in% r_data[r_data$Item == input$itemSelect,]$LongName & m_data$Mission.Type %in% input$missionTypeSelect),] %>% 
+      arrange_at(input$secondSortSelect, funs(desc(.))) %>%
+      arrange_at(input$sortSelect) #%>%
+      #rowwise() %>%
+      #mutate(newcol=r_data[r_data$Item == input$itemSelect & r_data$LongName == Item,]$Droprate)
+  })
+  output$distPlot <- renderPlot({
+    
   })
 }
 
