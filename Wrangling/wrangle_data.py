@@ -1,12 +1,8 @@
 from bs4 import BeautifulSoup
 import pandas as pd
 
-
-raw_html = open("raw_html.html")
+raw_html = open("Wrangling/raw_html.html")
 html = BeautifulSoup(raw_html, 'html.parser')
-
-
-
 
 def getMissionData():
     df  = pd.DataFrame(columns=['Planet','Mission','Mission Type','Rotation','Item','Droprate','Droprate Category'])
@@ -21,8 +17,8 @@ def getMissionData():
             if '/' in rw:
                 curPlanet = rw.split("/")[0]
                 curMission = rw.split("/")[1].split("(")[0]
-                curMissionType = ' '.join(rw.split("/")[1].split("(")[1])
-                curRot = ""
+                curMissionType = "(" + rw.split("/")[1].split("(")[1]
+                curRot = "" 
             elif rw.split()[0] == "Rotation":
                 curRot = rw.split()[1]
             else:
@@ -31,6 +27,7 @@ def getMissionData():
                 category = r[1].text.split()[0]
                 percent = ''.join(filter(lambda x: x in '.0123456789', r[1].text.split()[1]))
                 df = df.append(pd.DataFrame(columns=df.columns, data=[[curPlanet,curMission,curMissionType,curRot,item,percent,category]]))
+    df = df.drop_duplicates()
     df.to_csv('Mission_data.csv',index=False)
 
 def getRelicData():
