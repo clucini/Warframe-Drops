@@ -24,8 +24,8 @@ def getMissionData():
             else:
                 r = row.select('td')
                 item = r[0].text
-                category = r[1].text.split()[0]
-                percent = ''.join(filter(lambda x: x in '.0123456789', r[1].text.split()[1]))
+                category = ' '.join(r[1].text.split()[:-1])
+                percent = ''.join(filter(lambda x: x in '.0123456789', r[1].text.split()[-1:][0]))
                 df = df.append(pd.DataFrame(columns=df.columns, data=[[curPlanet,curMission,curMissionType,curRot,item,percent,category]]))
     df = df.drop_duplicates()
     df.to_csv('Mission_data.csv',index=False)
