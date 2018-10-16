@@ -43,7 +43,8 @@ if ($result->num_rows > 0) {
 
     echo("</table>");
 } else {
-    echo "0 results";
+    echo "<p>This item is vaulted</p>";
+
 }
 
 $conn->close();

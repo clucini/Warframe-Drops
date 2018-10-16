@@ -12,11 +12,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$length = strlen($_GET['item']);
-
 $sql = "SELECT Item 
         FROM relic_data
-        WHERE SUBSTR(Item, 1, $length) = '".$_GET['item']."'
+        WHERE Item = '".$_GET['item']."'
         GROUP BY Item";
 
 $result = $conn->query($sql);
@@ -36,13 +34,13 @@ if ($result->num_rows > 0) {
             '</button>';
             echo '<div class="dropdown-menu" aria-labelledby="'. $item_name . '">';
                 foreach($item as $row){
-                    echo '<button class="dropdown-item" onclick="addItems(\''. $row . '\')">' . $row . '</button>';
+                    echo '<a class="dropdown-item" href="results.php?item=' . str_replace(" ", "+", $row) . '">' . $row . '</a>';
                 }
             echo '</div>';
         echo '</div>';
     }
 } else {
-    echo "<p>This item is vaulted</p>";
+    echo "No suggestion";
 }
 
 $conn->close();

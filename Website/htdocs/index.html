@@ -6,25 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Warframe Grind Assistant</title>
 
-    <!-- Bootstrap CSS -->
-    <script src="scripts.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="scripts.js"></script>
+    
+    <!-- CSS -->
+    <link href="cover.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Hello, world!</title>
   </head>
-  <body>
-    <div class="container">
-        <div class="row">
-            <h1 class="display-2">Warframe Grind Assistant</h1>
+  
+  <body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">Warframe Grind Assistant</h3>
+            <nav class="nav nav-masthead justify-content-center">
+              <a class="nav-link active" href="#">Home</a>
+            </nav>
         </div>
-        <div class="row">
-                <input type="text" name="item" onkeyup="showHint(this.value)" placeholder="Start typing an item" class="form-control"width="10%">
+      </header>
+
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Warframe Grind Assistant</h1>
+        <p class="lead">This site is still under construction.</p>
+        <p class="lead">
+            <input type="text" name="item" onkeyup="showHint(this.value)" placeholder="Start typing an item" class="form-control" width="10%">
+        </p>
+        <div class="row mt-2">
+          <div class="col">
+            <div class="btn-group" role="group" id="suggestions"></div>
+          </div>
         </div>
         <div class="row mt-2">
-            <div class="btn-group" role="group" id="txtHint"></div>
+          <div class="col">
+            <div class="btn-group " role="group" id="selected_items"></div>
+          </div>
         </div>
+        <div class="row mt-2">
+          <div class="col">
+            <button class="btn btn-primary" onclick="createTable()">Go</button>
+          </div>
+        </div>
+      </main>
+      <div id="table" class="row"></div>
+      <footer class="mastfoot mt-auto">
+          <div class="inner">
+            <p>©Claudio Lucini, 2018</p>
+          </div>
+        </footer>
+      </div>
     </div>
   </body>
 </html>
