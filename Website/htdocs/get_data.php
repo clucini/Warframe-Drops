@@ -37,6 +37,7 @@ if ($result->num_rows > 0) {
     }
     foreach($missions as $mission) {
         foreach($mission as $row) {
+            echo "<br>";
             echo "<tr><td>" . $row["Planet"] . "</td><td>" . $row["Mission"] . "</td><td>" . $row["Mission_Type"] . "</td><td>" . $row["Rotation"] . "</td><td>" . $row["m_Droprate"] . "</td><td>" . $row["m_Item"] . "</td><td>" . $row["r_Droprate"] . "</td><td>" . $row["Combined_Droprate"] . "</td></tr>";
         }
     }
@@ -44,7 +45,6 @@ if ($result->num_rows > 0) {
     echo("</table>");
 } else {
     echo "<p>This item is vaulted</p>";
-
 }
 
 $conn->close();

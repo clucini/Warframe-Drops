@@ -15,6 +15,16 @@ function showHint(str) {
 }
 
 function addItems(str){
+    var selected_items = document.getElementById('selected_items');
+    var a = false;
+    for(i = 0; i < selected_items.childNodes.length; i++){
+        var item = selected_items.childNodes[i];
+        if(item.id == str){
+            a = true;
+        }
+    }
+    if(a)
+        return;
     var button = document.createElement('button');
     button.id = str;
     button.innerHTML = str;
@@ -37,6 +47,6 @@ function createTable() {
             document.getElementById("table").innerHTML = this.responseText;
         }
     };
-    xmlhttp.open("GET", "get_data.php?item=" + str, true);
+    xmlhttp.open("GET", "get_best.php?item=" + str, true);
     xmlhttp.send();
 }
