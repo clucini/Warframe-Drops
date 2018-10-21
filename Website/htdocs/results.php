@@ -6,6 +6,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
         <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+        <title>Warframe Grind Assistant</title>
+        <link rel="icon" href="favicon.ico">
     </head>
     <body>
         <div class="container-fluid" style="max-width:75%">
