@@ -8,11 +8,27 @@
         <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
         <title>Warframe Grind Assistant</title>
         <link rel="icon" href="favicon.ico">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127843515-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-127843515-1');
+        </script>
     </head>
     <body>
-        <div class="container-fluid" style="max-width:75%">
-            <div class = "row mt-5">
-                <div class="col-md-12">
+        
+        <div class="container-fluid" style="max-width:75%; text-align:center;">
+            <div class="row mt-5">
+                <div class="col">
+                    <a class="btn btn-primary" href="/">Home</a>
+                </div>
+            </div>
+            <div class = "row mt-3">
+                <div class="col">
                     <table class='table' id='tab'>
                         <thead>
                             <th>Planet</th><th>Mission</th><th>Mission Type</th><th>Rotation</th><th>Relic Droprate (%)</th><th>Relic(s)</th><th>Item(s)</th><th>Item Droprate (%)</th><th>Combined Droprate (%)</th>

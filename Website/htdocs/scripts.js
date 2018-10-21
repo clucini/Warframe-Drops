@@ -37,8 +37,10 @@ function addItems(str){
 
 function createTable() {
     str = getSelectedItems();
-    if(str == "")
+    if(str == ""){
+        hideShowMore();
         return;
+    }
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -60,6 +62,10 @@ function addShowMore(){
     document.getElementById("showmore").appendChild(button);
 }
 
+function hideShowMore(){
+    document.getElementById("show more").remove();
+}
+
 function getSelectedItems(){
     var items = []
     var selected_items = document.getElementById('selected_items');
@@ -75,3 +81,4 @@ function showMore(){
     str = getSelectedItems();
     window.location.href = "/results.php?item=" + str;
 }
+
