@@ -12,17 +12,19 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$length = strlen($_GET['item']);
+$item = $_GET['item'];
+$length = strlen($item);
 
-$sql = "SELECT Item 
-        FROM relic_data
-        WHERE SUBSTR(Item, 1, $length) = '".$_GET['item']."'
-        GROUP BY Item";
+$stmt = $conn->prepare("SELECT Item 
+                        FROM relic_data
+                        WHERE SUBSTR(Item, 1, $length) = ?
+                        GROUP BY Item");
+$stmt->bind_param('s',  $item);
+$stmt->execute();
+$res = $stmt->get_result();
 
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
+if ($res->num_rows > 0) {
+    while($row = $res->fetch_assoc()) {
         $arr[] = implode("",$row);
     }
     foreach($arr as $row) {
@@ -42,7 +44,7 @@ if ($result->num_rows > 0) {
         echo '</div>';
     }
 } else {
-    echo "<p>This item is vaulted</p>";
+    echo "<p>No Suggestions</p>";
 }
 
 $conn->close();

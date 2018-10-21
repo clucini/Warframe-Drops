@@ -27,20 +27,18 @@ function addItems(str){
         return;
     var button = document.createElement('button');
     button.id = str;
-    button.innerHTML = str;
-    button.className = "btn btn-primary";
+    button.innerHTML = str + ' <span aria-hidden="true">&times;</span>';
+    button.className = "btn ";
+
+
     button.onclick = function(){this.parentNode.removeChild(this)};
-    document.getElementById("selected_items").appendChild(button);
+    document.getElementById("selected_items").appendChild(button)
 }
 
 function createTable() {
-    var items = []
-    var selected_items = document.getElementById('selected_items');
-    for(i = 0; i < selected_items.childNodes.length; i++){
-        var item = selected_items.childNodes[i];
-        items.push(item.id);
-    }
-    str = items.join();
+    str = getSelectedItems();
+    if(str == "")
+        return;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -49,4 +47,31 @@ function createTable() {
     };
     xmlhttp.open("GET", "get_best.php?item=" + str, true);
     xmlhttp.send();
+    if(!document.getElementById("show more"))
+        addShowMore();
+}
+
+function addShowMore(){
+    var button = document.createElement('button');
+    button.id = "show more";
+    button.innerHTML = "Show More Info"
+    button.className = "btn btn-link";
+    button.onclick = function(){showMore()};
+    document.getElementById("showmore").appendChild(button);
+}
+
+function getSelectedItems(){
+    var items = []
+    var selected_items = document.getElementById('selected_items');
+    for(i = 0; i < selected_items.childNodes.length; i++){
+        var item = selected_items.childNodes[i];
+        items.push(item.id);
+    }
+    str = items.join();
+    return str;
+}
+
+function showMore(){
+    str = getSelectedItems();
+    window.location.href = "/results.php?item=" + str;
 }
